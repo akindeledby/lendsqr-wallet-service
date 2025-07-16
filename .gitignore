@@ -1,2 +1,12 @@
+
+
+# dependencies
+node_modules/
+
+
 .env
-/node_modules
+
+.env.local
+
+# env files (can opt-in for committing if needed)
+.env*
