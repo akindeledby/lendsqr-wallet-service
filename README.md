@@ -87,11 +87,12 @@ View it here: [ER Diagram on dbdesigner.net](https://app.dbdesigner.net/designer
 
 #### `wallets`
 
-| Field   | Type          | Notes                 |
-| ------- | ------------- | --------------------- |
-| id      | int, PK       | auto-increment        |
-| user_id | int, FK       | references `users.id` |
-| balance | decimal(14,2) | default `0.00`        |
+| Field      | Type          | Notes                 |
+| ---------- | ------------- | --------------------- |
+| id         | int, PK       | auto-increment        |
+| user_id    | int, FK       | references `users.id` |
+| balance    | decimal(14,2) | default `0.00`        |
+| created_at | timestamp     | default now           |
 
 #### `transactions`
 
