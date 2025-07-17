@@ -10,6 +10,7 @@ export async function up(knex: Knex): Promise<void> {
       .inTable("users")
       .onDelete("CASCADE");
     table.decimal("balance", 14, 2).defaultTo(0);
+    table.timestamp("created_at").defaultTo(knex.fn.now());
   });
 }
 

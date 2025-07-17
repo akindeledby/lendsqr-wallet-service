@@ -132,3 +132,5 @@ View it here: [ER Diagram on dbdesigner.net](https://app.dbdesigner.net/designer
 npm run test
 
 ```
+
+You can view the E-R Diagram here: https://erd.dbdesigner.net/designer/schema/1752690070-lendsql-wallet-service
