@@ -1,19 +1,27 @@
 {
   "name": "lendsqr-wallet-service",
   "version": "1.0.0",
-  "main": "index.ts",
+  "description": "A wallet service for the Lendsqr backend assessment.",
+  "main": "dist/index.js",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "prestart": "npm run build",
     "migrate": "knex migrate:latest --knexfile knexfile.ts --env development",
     "rollback": "knex migrate:rollback --knexfile knexfile.ts --env development",
-    "test": "jest",
-    "build": "tsc",
-    "start": "node dist/index.ts"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Akindele Adebayo",
   "license": "ISC",
-  "description": "",
+  "keywords": [
+    "wallet",
+    "lendsqr",
+    "node",
+    "typescript",
+    "express",
+    "mysql"
+  ],
   "dependencies": {
     "axios": "^1.10.0",
     "dotenv": "^17.2.0",
