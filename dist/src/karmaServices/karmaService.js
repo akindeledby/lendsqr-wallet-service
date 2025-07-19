@@ -32,51 +32,31 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.checkKarmaBlacklist = checkKarmaBlacklist;
+const axios_1 = __importDefault(require("axios"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
-const config = {
-    development: {
-        client: "mysql2",
-        connection: {
-            host: process.env.DB_HOST,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD,
-            database: process.env.DB_NAME,
-        },
-        pool: {
-            min: 2,
-            max: 10,
-        },
-        migrations: {
-            tableName: "knex_migrations",
-            directory: "./migrations",
-            extension: "ts",
-        },
-        seeds: {
-            directory: "./seeds",
-        },
-    },
-    production: {
-        client: "mysql2",
-        connection: {
-            host: process.env.PROD_DB_HOST,
-            user: process.env.PROD_DB_USER,
-            password: process.env.PROD_DB_PASSWORD,
-            database: process.env.PROD_DB_NAME,
-        },
-        pool: {
-            min: 2,
-            max: 10,
-        },
-        migrations: {
-            tableName: "knex_migrations",
-            directory: "./migrations",
-            extension: "ts",
-        },
-        seeds: {
-            directory: "./seeds",
-        },
-    },
-};
-exports.default = config;
+const apiKey = process.env.API_KEY;
+const url = "https://adjutor.lendsqr.com/v2/verification/karma";
+async function checkKarmaBlacklist(bvn) {
+    if (!apiKey) {
+        throw new Error("API_KEY is not defined in the environment variables.");
+    }
+    try {
+        const { data } = await axios_1.default.get(`${url}/${bvn}`, {
+            headers: {
+                Authorization: `Bearer ${apiKey}`,
+            },
+        });
+        console.log("Karma API response:", data);
+        return data.blacklisted === true;
+    }
+    catch (error) {
+        console.error("Error checking Karma blacklist:", error.message);
+        throw new Error("Failed to check Karma blacklist");
+    }
+}
