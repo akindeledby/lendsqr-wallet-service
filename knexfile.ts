@@ -9,6 +9,7 @@ const config: { [key: string]: Knex.Config } = {
     connection: {
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
+      port: Number(process.env.DB_PORT) || 3306,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
     },
@@ -33,6 +34,7 @@ const config: { [key: string]: Knex.Config } = {
       user: process.env.PROD_DB_USER,
       password: process.env.PROD_DB_PASSWORD,
       database: process.env.PROD_DB_NAME,
+      port: Number(process.env.PROD_DB_PORT) || 3306,
     },
     pool: {
       min: 2,
