@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
     </ul>
   `);
 });
-app.use("/api/users/register", userRoutes_1.default);
+app.use("/api/users", userRoutes_1.default);
 app.use("/api/wallets", walletRoutes_1.default);
 app.listen(3000, () => {
   console.log("Server running on port 3000");
