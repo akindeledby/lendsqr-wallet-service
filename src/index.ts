@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-app.use("/api/users", userRoutes);
+app.use("/api/users/register", userRoutes);
 app.use("/api/wallets", walletRoutes);
 
 app.listen(3000, () => {
